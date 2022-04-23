@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>My nutritionist</title>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div>Teachable Machine Image Model</div>
+		<h3>My nutritionist</h3>
 		<button type="button" onclick="init()">Start</button>
 		<button type="button" onclick="predict()">예측</button>
 		<script
@@ -76,7 +77,7 @@
 				$('.image-upload-wrap').removeClass('image-dropping');
 			});
 		</script>
-		
+
 		<script type="text/javascript">
 			// More API functions here:
 			// https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
@@ -98,20 +99,36 @@
 				model = await tmImage.load(modelURL, metadataURL);
 				maxPredictions = model.getTotalClasses();
 				labelContainer = document.getElementById('label-container');
-				for (let i = 0; i < maxPredictions; i++) { // and class labels
+				for (let i = 0; i < maxPredictions; i++) {
+					// and class labels
 					labelContainer.appendChild(document.createElement('div'));
 				}
 			}
 			// run the webcam image through the image model
 			async function predict() {
 				// predict can take in an image, video or canvas html element
-				var image = document.getElementById('input-image')
+				var image = document.getElementById('input-image');
 				const prediction = await model.predict(image, false);
-				for (let i = 0; i < maxPredictions; i++) {
-					const classPrediction =
-						prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
-					labelContainer.childNodes[i].innerHTML = classPrediction;
+				if (
+					prediction[0].className == '가래떡' &&
+					prediction[0].probability.toFixed(2) >= 0.6
+				) {
+					labelContainer.childNodes[0].innerHTML =
+						' 가래떡: 208kcal, 탄수화물: 47.5g, 단백질: 3.8g, 지방: 0.3g, 트랜스지방: 0.0g, 포화지방: 0.2g  당류: 0.0g, 나트륨: 256.96mg, , 콜레스테롤: 0.0mg ';
+				} else if (
+					prediction[1].className == '간장게장' &&
+					prediction[1].probability.toFixed(2) >= 0.6
+				) {
+					labelContainer.childNodes[0].innerHTML =
+						' 간장게장: 155.4kcal, 탄수화물: 15.09g, 단백질: 17.56g, 지방: 2.76g, 트랜스지방: 0.01g, 포화지방: 0.39g  당류: 10.53g, 나트륨: 2722.89mg, , 콜레스테롤: 122.28mg ';
+				} else {
+					labelContainer.childNodes[0].innerHTML = '알 수 없음';
 				}
+				// for (let i = 0; i < maxPredictions; i++) {
+				// 	const classPrediction =
+				// 		prediction[i].className + ': ' + prediction[i].probability.toFixed(2);
+				// 	labelContainer.childNodes[i].innerHTML = classPrediction;
+				// }
 			}
 		</script>
 	</body>
