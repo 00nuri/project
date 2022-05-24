@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		  <meta charset="UTF-8">
 		<h1>My nutritionist</h1>
 		<link rel="stylesheet" href="style.css" />
+		
+		<script type="text/javascript">
+			function rep(){
+				alert('1일권장칼로리계산값');
+				return;
+			}
 		
     </script>
 		  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
@@ -17,8 +24,11 @@
 			활동:<input type="checkbox" name="활동지수" value="1"/> 적음
 			<input type="checkbox" name="활동지수" value="2"/> 보통
 			<input type="checkbox" name="활동지수" value="3"/> 많음 <br>
-			<input type = "submit" value="1일 권장 칼로리">
-			
+			<!-- <form name= "1일권장칼로리" action="2.html" method="post" enctype="multipart/form-data">
+				<input type='file' id="myFile" name=''multiple/> -->
+			</form>
+			<!-- <input type ="submit" value="1일권장칼로리"> -->
+		<input type = "button" value="1일 권장 칼로리" onclick="rep()">
 		</form>
 				<p>	초록 칸 안에 저장된 음식 사진을 넣거나 ADD IMAGE 버튼을 눌러 음식 이미지를 찍어주세요. </p>
 		<script
