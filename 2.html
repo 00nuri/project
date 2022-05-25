@@ -1,0 +1,174 @@
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+		  <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>기능</title>
+		
+		<script>
+	
+document.getElemenById('btnAdd').addEventListener('click',addList);		
+document.getElemenById('btnDelsel').addEventListener('click',delSel);
+document.getElemenById('btnDelLast').addEventListener('click',delLast);
+document.getElemenById('btnDelAll').addEventListener('click',delAll);
+function addList(){
+	var contents = document.querySelector('.text-basic');
+	if(!contents.value){
+		//contents.value에 값이 있을 경우 true.
+		alert('내용을 입력하세요');
+		
+		contents.focus();
+		//입력창에 focus 하기
+		
+		return false();
+		
+	} else{
+		var tr = document.createElement('tr');
+		
+		var input = document.createElement('input');
+		input.setAttribute('type','checkbox');
+		input.setAttribute('class','btn-chk');
+		
+		var td_1 = document.createElement('td');
+		
+		var td_2 = document.createElement('td');
+		td_2.innerHTML = contents.value;
+		
+		td_1.appendchild(input);
+		tr.appendchild(td_1);
+		tr.appendchild(td_2);
+		
+		document.getElemenById('listBody').appendchild(tr);
+	}
+}
+	
+	var list =document.getElemenById('listBody');
+	var listChild =list.children;
+	
+	function delSel(){
+		var checkbox = document.querySelectorAll('.btn-chk');
+		
+		for(var i in checkbox){
+			if(checkbox[i].checked{
+			   list.removeChild(checkbox[i].parentElement.parentElement);
+			   }				
+			}
+	}
+	
+function delLast(){
+	if(listChild.legth > 0){
+		var lastdx = listChild.length - 1;
+		
+		list.removeChild(listChild[lastIdx]);
+	}else{
+		alert('삭제할 항목이 없습니다.');
+	}
+}
+	
+function delAll(){
+	for(var i=0; i<listChild.length; i++){
+		list.removeChild(listChild[i]);
+		i--;
+		//하나를 제거하고 나면 length도 줄어들고 [i] 값도 변함.
+	}
+}
+</script>
+		
+				
+	<!-- <script>
+	//- Using a function pointer:
+document.getElementById("답변하기").onclick = report;
+
+//- Using an anonymous function:
+document.getElementById("답변하기").onclick = function () { alert('hello!'); };	
+		
+		
+		var el = document.getElementById("답변하기");
+if (el.addEventListener)
+    el.addEventListener("click", doFunction, false);
+else if (el.attachEvent)
+    el.attachEvent('onclick', doFunction);
+		</script> -->
+	</head>
+    <body>
+			<!-- <form>
+			나이: <input type="age" name="age"/><br>
+			 키: <input type="cm" name="cm"/><br>
+			활동:<input type="checkbox" name="활동지수" value="1"/> 적음
+			<input type="checkbox" name="활동지수" value="2"/> 보통
+			<input type="checkbox" name="활동지수" value="3"/> 많음 <br>
+			<input type = "submit" value="1일 권장 칼로리"> -->
+			<!-- </form> -->
+			
+		<h2> 먹은 음식 선택해주세요!</h2>
+		<input type="checkbox" name="food" value="간장게장"> 간장게장
+		<input type="checkbox" name="food" value="곱창"> 곱창
+		<input type="checkbox" name="food" value="딸기"> 딸기
+		<input type="checkbox" name="food" value="쌀밥">  쌀밥
+		<input type="button" value="답변하기" onclick="report()">
+<!-- <script>		
+		function report(){
+		var msg='선택한 항목입니다.\n';
+		var checkBoxes = document.getElementByName('food');
+		
+		for(var i=0; i<checkBoxes.length; i++){
+			if(checkBoxes[i].checked){
+				msg +=('-' + checkBoxes[i].value+ '\n');
+			}
+		}
+		 alert(msg);								  
+		</script> -->
+
+		
+		
+	<div class="list-box">
+				<h1> list</h1>
+		
+			<div class="write-box">
+				<input type ="text" class ="text-basic">
+				<button type="button" id="btnAdd">추가</button>
+		</div>
+		
+	<table class="list-table">
+			<colgroup>
+			<col width="10%">
+			<col width="90%">
+			</colgroup>
+			
+		<thead>
+			<tr>
+				<th>check</th>
+				
+			</tr>
+		</thead>
+		<tbody id="listBody">
+			<tr>
+				<td><input type="checkbox" class="btn-chk"></td>
+				<td>딸기</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="btn-chk"></td>
+				<td>간장게장</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" class="btn-chk"></td>
+				<td>쌀밥</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="btn-area">
+			<button type="button" id="btnDelsel">선택삭제</button>
+			<button type="button"  id="btnDelLast">마지막 항목 삭제</button>
+			<button type="button" id="btnDelAll">전체삭제</button>			
+	</div>
+</div>
+		
+					
+		
+    </body>
+</html>
+
+<head>
+</head>
