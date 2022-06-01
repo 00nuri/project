@@ -4,40 +4,21 @@
 		  <meta charset="UTF-8">
 		<h1>My nutritionist</h1>
 		<link rel="stylesheet" href="style.css" />
-		
-		<script type="text/javascript">
-			function rep(){
-				alert('1일권장칼로리계산값');
-				return;
-			}
-			
-			// function newPage() {
-			// 	window.location.href = '2.html'
-			// }
-		
-    </script>
-		  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-		
+<style >   h1{
+           font-size: 45px;
+           text-align:center;         
+        }
+	</style>
+		  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>		
 	</head>
 	<body style= "text-align:center;">
+<nav>
+	<ul>  
+		<o1><li><a href="2.html">하루 식사 기록</a></li></o1>			
+			  <li><a href="3.html">일일권장칼로리</a></li>
+   </ul>   
+ </nav>   
 
-		
-		<form>
-			나이: <input type="age" name="age"/><br>
-			 키: <input type="cm" name="cm"/><br>
-			활동:<input type="checkbox" name="활동지수" value="1"/> 적음
-			<input type="checkbox" name="활동지수" value="2"/> 보통
-			<input type="checkbox" name="활동지수" value="3"/> 많음 <br>
-			<!-- <form name= "1일권장칼로리" action="2.html" method="post" enctype="multipart/form-data">
-				<input type='file' id="myFile" name=''multiple/> -->
-			</form>
-			<!-- <input type ="submit" value="1일권장칼로리"> -->
-		<input type = "button" value="1일 권장 칼로리" onclick="rep()">
-		<!-- <input id='go' type='button' onclick='newPage()' value='다른 기능 더보기'/> -->
-	
-	   <button type="button" onclick="location.href='2.html'"> 다른 기능 더보기 </button>
-		</form>
-				<p>	초록 칸 안에 저장된 음식 사진을 넣거나 ADD IMAGE 버튼을 눌러 음식 이미지를 찍어주세요. </p>
 		<script
 			class="jsbin"
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
@@ -63,6 +44,7 @@
 					<h3>Drag and drop a file or select add Image</h3>
 				</div>
 			</div>
+			<p style="font-size:5px;">초록 칸 안에 저장된 음식 사진을 넣거나 ADD IMAGE 버튼을 눌러 음식 이미지를 찍어주세요.</p>
 			<div class="file-upload-content">
 				<img class="file-upload-image" id="input-image" src="#" alt="your image" />
 				<p class="result-message"></p>
@@ -74,9 +56,7 @@
                     <span class="try-again-text">다른 사진으로 재시도</span>
 						  <!-- <button type="submit" class="btn btn-danger" id="btn" > -->
 							  <!-- <a herf="#" onclick="2.html();">결과보기</a> -->
-						
-				</div>
-			</div>
+					</button> </div>
 		</div>
 		<div id="webcam-container"></div>
 		<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
