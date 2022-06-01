@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<script type="text/javascript">
+			function rep(){
+				alert('1일권장칼로리계산값');
+				return;
+			}
+    </script>
+
+</head>
+<body>
+	
+	  <style>
+		  div #kcal { 
+			  border: 20px;
+			  padding: 5px 20px;
+			  position:absolute;
+			  top: 50px;
+			  left: 50px;
+			  width: 450px; height: 250px;
+			  margin-left:-220px;
+			  margin-top: -170px;
+			  
+			  display: flex;
+			  flex-direction: column;
+			  justify-content: center; /*가로에서 가운데에 요소(자식요소)를 배치하겠다.*/
+			  align-items: center;  /*세로에서 가운데에 요소를 배치하겠다. */
+		  }
+			  
+			  
+			  text-align:center;
+			  
+			  
+		  }
+	</style>
+			
+<div id="kcal">
+	<div>
+		<form>
+			나이: <input type="text" name="age"/><br>
+			 키: <input type="text" name="cm"/><br>
+			활동: <input type="checkbox" name="활동지수" value="1"/> 적음
+			<input type="checkbox" name="활동지수" value="2"/> 보통
+			<input type="checkbox" name="활동지수" value="3"/> 많음 <br>
+			<input type = "button" value="1일 권장 칼로리" onclick="rep()">
+			</form>
+	</div>
+	</body>
+		
