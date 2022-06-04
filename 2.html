@@ -1,22 +1,13 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
 	
-<style>
-.big_tab ul{overflow: hidden; width: 85%;}
-.big_tab ul li{width: 25%; box-sizing: border-box; float: left; list-style-type: none; border: 1px solid #ccc; text-align: center; line-height: 40px;}
-.big_tab ul li.activeClass{font-weight: bold; font-size: 20px;}
-.sm_select {display: none;}
-.sm_select select {width:100%; height: 40px; }
-
-
-@media (max-width:500px){
-      .sm_select {display: block;}
-      .big_tab{display: none;}
- }
 	
-	.main{
+    <link rel="stylesheet" href="main.css">
+	<style>
+	
+.main{
   width: 500px;
   display: flex;
   justify-content: center;
@@ -71,149 +62,33 @@ a{
   color: white;
   cursor: pointer;
 }
-	
-/* body{
-	margin-top: 100px;
-	font-family: 'Trebuchet MS', serif;
-	line-height: 1.6
-}
-.container{
-	width: 500px;
-	margin: 0 auto;
+		
+	/* f,b,c,d,e{
+    list-style:none;
+    margin:0;
+    padding:0;
 }
 
-ul.tabs{
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-ul.tabs li{
-	background: none;
-	color: #222;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
-}
-
-ul.tabs li.current{
-	background: #ededed;
-	color: #222;
-}
-
-.tab-content{
-	display: none;
-	background: #ededed;
-	padding: 15px;
-}
-
-.tab-content.current{
-	display: inherit;
+f,b,c,d,e{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
 } */
-      </style>
-    <!-- <link rel="stylesheet" href="main.css">
-	<!-- <style>
-		.main{
-  width: 500px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: auto;
-}
-h1{
-  text-align: center;
-}
-input[type="text"]{
-  width: 385px;
-  height: 30px;
-  outline: 0;
-  border: none;
-  font-size: 1.5em;
-  background: white;
-  margin-right: 10px;
-  padding: 5px;
-}
-button{
-  width: 85px;
-  height: 40px;
-  font-size: 1.5em;
-  outline: 0;
-  border: none;
-}
-.todolist{
-  background-color: white;
-  margin-top: 20px;
-  padding: 10px 40px 10px 0px;
-}
-ul{
-  list-style: none;
-}
-li{
-  border-bottom: 1px solid lightgrey;
-  padding-bottom: 15px; 
-  padding-top: 15px;
-  font-size: 1.3em;
-}
-a{
-  float: right;
-  text-align: right;
-  color: red;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.delete{
-  background-color: yellow;
-  text-align: center;
-  padding: 0px 4px 0px 4px;
-  color: white;
-  cursor: pointer;
-}
-	<!-- </style>
+		
+		
+
+
+	</style>
 	<script>
 function frep(){
 				alert('탄수화물초과!!! 경고기능!');
 				return;
 			}
-	</script> --> 
+	</script>
 </head>
 <body>
-	<div class="tabmenu">
-		 <div class="big_tab">
-		 <ul>
-      <li><a href="#1">한식</a></li>
-      <li><a href="#2">일식</a></li>
-      <li><a href="#3">중식</a></li>
-      <li><a href="#4">기타</a></li>
-      
-		 </ul>
-			     </div>
-		  <div class="sm_select">
-      <select name="" id="tabmenu">
-        <option value="#1">1</option>
-        <option value="#2">2</option>
-        <option value="#3">3</option>
-        <option value="#4">4</option>
-		  <option value="#5">5</option>
-      </select>
-    </div>
-		 </div>
-	 <!-- <div id="1" class="tab-contents">
-  <p>김치찌개</p><p>된장찌개</p>
-  </div>
-  <div id="2" class="tab-contents">
-    <p>짜장면</p><p>짬뽕</p>  </div>
-  <div id="3" class="tab-contents">
-    <p>초밥</p><p>소바</p>
-  </div>
-  <div id="4" class="tab-contents">
-   <p>치킨</p><p>피자</p>
-  </div>
-  <div id="5" class="tab-contents">
- <p>사과</p><p>수박</p>
-  </div> -->
-	
-	
-	
-	  <div class="main">
+    <div class="main">
         <h1>섭취 음식 리스트</h1>
         <form class="" action="index.html" method="post">
             <input type="text" placeholder="음식" name="todo">
@@ -225,7 +100,10 @@ function frep(){
             <a id="clear">모두 삭제</a>
 		<input type = "button" value="결과보기" onclick="frep()">
         </div>
-    </div>
+	</div>
+	
+	
+
     <script type="text/JavaScript" src="main.js"></script>
 	<script>
 	init();
@@ -312,40 +190,154 @@ function addTask(value){
     
 }
 </script>
-    <!-- <div class="container">
-		<!-- 탭 메뉴 상단 시작 -->
-        <!-- <ul class="tabs">
-            <li class="tab-link current" data-tab="tab-1">한식</li>
-            <li class="tab-link" data-tab="tab-2">중식</li>
-            <li class="tab-link" data-tab="tab-3">일식</li>
-			 <li class="tab-link" data-tab="tab-4">기타</li>
-			 <li class="tab-link" data-tab="tab-5">과일</li>
-        </ul>
-<!-- 탭 메뉴 상단 끝 -->
-<!-- 탭 메뉴 내용 시작 -->
-        <!-- <div id="tab-1" class="tab-content current">
-			<p>김치찌개</p><p>된장찌개</p></div>
-        <div id="tab-2" class="tab-content">
-			<p>짜장면</p><p>짬뽕</p></div>
-        <div id="tab-3" class="tab-content">
-			<p>초밥</p><p>소바</p></div>
-		<!-- 탭 메뉴 내용 끝 -->
-  
 	
-	<!--tab-->
-    <!-- <div class="main">
+</body>
+</html>
+
+ -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+	ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+ul:after{
+    content:'';
+    display: block;
+    clear:both;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: #111;
+}
+.active {
+    background-color: #4CAF50;
+}
+	</style>
+	
+	  <link rel="stylesheet" href="main.css">
+	<style>
+	
+.main{
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+}
+h1{
+  text-align: center;
+}
+input[type="text"]{
+  width: 385px;
+  height: 30px;
+  outline: 0;
+  border: none;
+  font-size: 1.5em;
+  background: white;
+  margin-right: 10px;
+  padding: 5px;
+}
+button{
+  width: 85px;
+  height: 40px;
+  font-size: 1.5em;
+  outline: 0;
+  border: none;
+}
+.todolist{
+  background-color: white;
+  margin-top: 20px;
+  padding: 10px 40px 10px 0px;
+}
+d{
+  list-style: none;
+}
+f{
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  font-size: 1.3em;
+}
+a{
+  float: right;
+  text-align: right;
+  color: red;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.delete{
+  background-color: yellow;
+  text-align: center;
+  padding: 0px 4px 0px 4px;
+  color: white;
+  cursor: pointer;
+}
+		
+	/* f,b,c,d,e{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+f,b,c,d,e{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
+} */
+		
+		
+
+
+	</style>
+	<script>
+function frep(){
+				alert('탄수화물초과!!! 경고기능!');
+				return;
+			}
+	</script>
+	
+	
+</head>
+<body>
+    <ul>
+      <li><a class="active" href="#음식종류">Home</a></li>
+      <li><a href="#food">한식</a></li>
+      <li><a href="#food">일식</a></li>
+      <li><a href="#food">중식</a></li>
+	 <li><a href="#food">과일</a></li>
+	<li><a href="#food">기타</a></li>
+    </ul>
+	
+	    <div class="main">
         <h1>섭취 음식 리스트</h1>
         <form class="" action="index.html" method="post">
             <input type="text" placeholder="음식" name="todo">
             <button type="submit"><b>추가</b></button>
         </form>
         <div class="todolist">
-            <ul>
+            <ul class="d">
             </ul>
             <a id="clear">모두 삭제</a>
 		<input type = "button" value="결과보기" onclick="frep()">
         </div>
-    </div>
+	</div>
     <script type="text/JavaScript" src="main.js"></script>
 	<script>
 	init();
@@ -403,7 +395,7 @@ function checkToDo(e){  // 체크박스를 클릭한 경우 글씨 색을 연하
 }
 
 function clearTodoList(e){ //목록 전체 삭제하는 경우
-    let ul = document.querySelector('ul').innerHTML = '';
+    let ul="d" = document.querySelector('ul').innerHTML = '';
     
 }
 
@@ -420,9 +412,9 @@ function addToDo(e){ //새로운 할 일 추가하는 경우
 }
 
 function addTask(value){
-    let ul = document.querySelector('ul');
+    let ul="d" = document.querySelector('ul');
     
-    let li = document.createElement('li');
+    let li="f" = document.createElement('li');
     
     li.innerHTML = `<span class="delete">x</span><input type="checkbox"><label>${value}</label>`;
     
@@ -431,48 +423,6 @@ function addTask(value){
     document.querySelector('.todolist').style.display = 'block';
     
 }
-</script> -->
-	<script>
-		 $('.big_tab li').first().addClass("activeClass");
-  $(".tab-contents").not(':first').hide();
-  
-    $('.big_tab li').on('click',function(){
-      $(this).addClass("activeClass").siblings().removeClass("activeClass");
-      var link = $(this).find("a").attr("href");
-      var link_num = link.substr(link.length-1);
-      $("select#tabmenu option").eq(link_num-1).prop("selected", "selected");
-      $(".tab-contents").hide();
-      $(link).show();
-    });
-    
-    $("select#tabmenu").on("change",function(){
-      var select_link = $("select#tabmenu").val();
-      var select_num = $(this).prop('selectedIndex');
-      $('.big_tab li').eq(select_num).addClass("activeClass").siblings().removeClass('activeClass');
-      $(".tab-contents").hide();
-      $(select_link).show();
-      console.log(select_link);
-    });
-   
-        // $(document).ready(function(){
-        //     $('ul.tabs li').click(function(){
-        //         var tab_id = $(this).attr('data-tab');
-
-        //         $('ul.tabs li').removeClass('current');
-        //         $('.tab-content').removeClass('current');
-
-        //         $(this).addClass('current');
-        //         $("#"+tab_id).addClass('current');
-        //     });
-
-        // });
-        
-      </script>
-	<script>
-function frep(){
-				alert('탄수화물초과!!! 경고기능!');
-				return;
-			}
-	</script>
+</script>
 </body>
 </html>
