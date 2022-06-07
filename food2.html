@@ -1,0 +1,184 @@
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+	<div id="parah"></div>
+	<script>
+        var sum = 0;
+        function calc(){ 
+            a = document.getElementsByClassName("c");
+            for(i = 0; i < a.length; i++){
+                if(a[i].checked == true){
+                    sum += parseInt(a[i].value);
+                }
+            }
+				
+            document.getElementById("sum").value = sum;
+            sum = 0;
+        }
+    </script>
+	
+	
+	<script>
+var arrInput = new Array(0);
+  var arrInputValue = new Array(0);
+ 
+function addInput() {
+  arrInput.push(arrInput.length);
+  arrInputValue.push("");
+  display();
+}
+ 
+function display() {
+  document.getElementById('parah').innerHTML="";
+  for (intI=0;intI<arrInput.length;intI++) {
+    document.getElementById('parah').innerHTML+=createInput(arrInput[intI], arrInputValue[intI]);
+  }
+}
+ 
+function saveValue(intId,strValue) {
+  arrInputValue[intId]=strValue;
+}  
+ 
+function createInput(id,value) {
+  return "<input type='text' id='test "+ id +"' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
+ 
+value +"'><br>";
+}
+ 
+function deleteInput() {
+  if (arrInput.length > 0) { 
+     arrInput.pop(); 
+     arrInputValue.pop();
+  }
+  display(); 
+}
+</script>
+	
+<style type="text/css">
+	ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+ul:after{
+    content:'';
+    display: block;
+    clear:both;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: #111;
+}
+	
+active {
+    background-color: #4CAF50;
+}
+		 
+		 
+		 .parent {
+    display: flex;
+}
+child {
+    flex: 1;
+}
+		 
+		 	}
+
+jb-text {
+				padding: 5px 10px;
+				background-color: yellow;
+				text-align: center;
+			}	 
+
+	</style>
+
+</head>
+<body>
+	 <ul>
+    <li><a class="active" href="index.html">Home</a></li>
+      <li><a class="active" href="2.html">한식</a></li>
+      <li><a class="active" href="food2.html">중식</a></li>
+      <li><a class="active" href="food3.html">일식</a></li>
+	  <li><a class="active" href="food4.html">과일</a></li>
+	  <li><a class="active" href="food5.html">기타</a></li>
+    </ul>
+	
+	 <!-- <div class="parent" style="width: 300px; height: 100px; background: #585858;">
+    <div class="child" style="background: #2E9AFE;">
+
+    </div>
+    <div class="child" style="background: #FA5858;">
+
+    </div>
+    <div class="child" style="background: #81F781;">
+
+    </div>
+</div>  -->
+		
+	<!-- < <div class="jb-image"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBMOK-d1tcgdU-kzuzAFkTgQ6u8iW0gvNOtw&usqp=CAU"
+	alt=""></div>
+		<div class="jb-text">
+				<p>김치찌개</p>
+			</div>
+ -->
+	
+	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShVZEV48L6VBzldlTUghnSoxC0k0vTrVWzqA&usqp=CAU"
+		width: 200px;
+          height: 30px;>
+
+	
+	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXQvtMI3LZsW_QaxXzbjn3PZ2trx4RBc8SBA&usqp=CAU"
+		width: 200px;
+          height: 300px;>
+
+	
+	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe-_Kgkn-KlTPmBFt8LOuhUHZpGpwV2Cuq4w&usqp=CAU"
+		  width: 200px;
+          height: 300px;>
+
+
+	
+	<script>
+      div.setAttribute("class","image");
+      div.onclick = function(){
+        if (this.getAttribute("class").indexOf("image-selected") 
+        == -1){
+          this.setAttribute("class", "image image-selected")
+        }
+        else{
+          this.setAttribute("class", "image ")
+        }
+    }
+</script>
+	<script>
+      div.onclick = function(){
+        this.classList.toggle("image-selected")
+      }
+</script>
+	  <form>
+        <input class="c" type="checkbox" name="food" onclick="calc()" value="529.18">짜장면
+        <input class="c" type="checkbox" name="food" onclick="calc()" value="464.46">짬뽕
+        <input class="c" type="checkbox" name="food" onclick="calc()" value="457">탕수육
+       <br> 합계 : <input id="sum" value="0">
+    </form>
+	
+	<form method="post" action="test.jsp">
+<input type="button" value="추가" onclick="addInput();" />
+<input type="button" value="삭제" onclick="deleteInput();"/>
+<input type="submit" value="전송"/>
+</form>
+	
+	
+	
+</body>
+</html> 

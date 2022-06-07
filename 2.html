@@ -1,206 +1,59 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-	
-	
-    <link rel="stylesheet" href="main.css">
-	<style>
-	
-.main{
-  width: 500px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: auto;
-}
-h1{
-  text-align: center;
-}
-input[type="text"]{
-  width: 385px;
-  height: 30px;
-  outline: 0;
-  border: none;
-  font-size: 1.5em;
-  background: white;
-  margin-right: 10px;
-  padding: 5px;
-}
-button{
-  width: 85px;
-  height: 40px;
-  font-size: 1.5em;
-  outline: 0;
-  border: none;
-}
-.todolist{
-  background-color: white;
-  margin-top: 20px;
-  padding: 10px 40px 10px 0px;
-}
-ul{
-  list-style: none;
-}
-li{
-  border-bottom: 1px solid lightgrey;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  font-size: 1.3em;
-}
-a{
-  float: right;
-  text-align: right;
-  color: red;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.delete{
-  background-color: yellow;
-  text-align: center;
-  padding: 0px 4px 0px 4px;
-  color: white;
-  cursor: pointer;
-}
-		
-	/* f,b,c,d,e{
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-
-f,b,c,d,e{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-} */
-		
-		
-
-
-	</style>
+	<div id="parah"></div>
 	<script>
-function frep(){
-				alert('탄수화물초과!!! 경고기능!');
-				return;
-			}
-	</script>
-</head>
-<body>
-    <div class="main">
-        <h1>섭취 음식 리스트</h1>
-        <form class="" action="index.html" method="post">
-            <input type="text" placeholder="음식" name="todo">
-            <button type="submit"><b>추가</b></button>
-        </form>
-        <div class="todolist">
-            <ul>
-            </ul>
-            <a id="clear">모두 삭제</a>
-		<input type = "button" value="결과보기" onclick="frep()">
-        </div>
-	</div>
+        var sum = 0;
+        function calc(){ 
+            a = document.getElementsByClassName("c");
+            for(i = 0; i < a.length; i++){
+                if(a[i].checked == true){
+                    sum += parseInt(a[i].value);
+                }
+            }
+            document.getElementById("sum").value = sum;
+            sum = 0;
+        }
+    </script>
 	
 	
-
-    <script type="text/JavaScript" src="main.js"></script>
 	<script>
-	init();
-
-function init(){
-        document.querySelector('form').addEventListener('submit', addToDo);
-    
-        document.getElementById('clear').addEventListener('click', clearTodoList);
-    
-    
-        document.querySelector('ul').addEventListener('click', deleteOrCheck);
-    
-    
-}
-
-function deleteOrCheck(e){
-    if(e.target.className == 'delete')  
-    
-        deleteToDo(e); // X 버튼을 누르면 목록에서 항목 삭제
-    
-    
-    else {
-    
-        checkToDo(e); // 체크박스를 클릭한 경우 글씨 색을 연하게 바꿔준다.
-    
-    
-    }
-    
-}
-
-function deleteToDo(e){ // X 버튼을 누르면 목록에서 항목 삭제
-    let remove = e.target.parentNode;
-    
-    let parentNode = remove.parentNode;
-    
-    parentNode.removeChild(remove);
-    
+var arrInput = new Array(0);
+  var arrInputValue = new Array(0);
+ 
+function addInput() {
+  arrInput.push(arrInput.length);
+  arrInputValue.push("");
+  display();
 }
  
-function checkToDo(e){  // 체크박스를 클릭한 경우 글씨 색을 연하게 바꿔준다.
-    const todo = e.target.nextSibling;
-    
-    if(e.target.checked){
-    
-        todo.style.color = "#dddddd";
-    
-    
-    }else {
-    
-        todo.style.color = "#000000";
-    
-    
-    }
-    
+function display() {
+  document.getElementById('parah').innerHTML="";
+  for (intI=0;intI<arrInput.length;intI++) {
+    document.getElementById('parah').innerHTML+=createInput(arrInput[intI], arrInputValue[intI]);
+  }
 }
-
-function clearTodoList(e){ //목록 전체 삭제하는 경우
-    let ul = document.querySelector('ul').innerHTML = '';
-    
+ 
+function saveValue(intId,strValue) {
+  arrInputValue[intId]=strValue;
+}  
+ 
+function createInput(id,value) {
+  return "<input type='text' id='test "+ id +"' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
+ 
+value +"'><br>";
 }
-
-function addToDo(e){ //새로운 할 일 추가하는 경우
-    e.preventDefault();
-    let toDoValue = document.querySelector('input');
-    if(toDoValue.value !== '')
-        addTask(toDoValue.value);
-    
-    
-        toDoValue.value = ''; //입력창 비워주기
-    
-    
-}
-
-function addTask(value){
-    let ul = document.querySelector('ul');
-    
-    let li = document.createElement('li');
-    
-    li.innerHTML = `<span class="delete">x</span><input type="checkbox"><label>${value}</label>`;
-    
-    ul.appendChild(li);
-    
-    document.querySelector('.todolist').style.display = 'block';
-    
+ 
+function deleteInput() {
+  if (arrInput.length > 0) { 
+     arrInput.pop(); 
+     arrInputValue.pop();
+  }
+  display(); 
 }
 </script>
 	
-</body>
-</html>
-
- -->
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <style type="text/css">
+<style type="text/css">
 	ul {
     list-style-type: none;
     margin: 0;
@@ -225,204 +78,110 @@ li a {
 li a:hover:not(.active) {
     background-color: #111;
 }
-.active {
+	
+active {
     background-color: #4CAF50;
 }
-	</style>
-	
-	  <link rel="stylesheet" href="main.css">
-	<style>
-	
-.main{
-  width: 500px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: auto;
+		 
+		 
+		 .parent {
+    display: flex;
 }
-h1{
-  text-align: center;
+child {
+    flex: 1;
 }
-input[type="text"]{
-  width: 385px;
-  height: 30px;
-  outline: 0;
-  border: none;
-  font-size: 1.5em;
-  background: white;
-  margin-right: 10px;
-  padding: 5px;
-}
-button{
-  width: 85px;
-  height: 40px;
-  font-size: 1.5em;
-  outline: 0;
-  border: none;
-}
-.todolist{
-  background-color: white;
-  margin-top: 20px;
-  padding: 10px 40px 10px 0px;
-}
-d{
-  list-style: none;
-}
-f{
-  border-bottom: 1px solid lightgrey;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  font-size: 1.3em;
-}
-a{
-  float: right;
-  text-align: right;
-  color: red;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-.delete{
-  background-color: yellow;
-  text-align: center;
-  padding: 0px 4px 0px 4px;
-  color: white;
-  cursor: pointer;
-}
-		
-	/* f,b,c,d,e{
-    list-style:none;
-    margin:0;
-    padding:0;
-}
+		 
+		 	}
 
-f,b,c,d,e{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-} */
-		
-		
-
+jb-text {
+				padding: 5px 10px;
+				background-color: yellow;
+				text-align: center;
+			}	 
 
 	</style>
-	<script>
-function frep(){
-				alert('탄수화물초과!!! 경고기능!');
-				return;
-			}
-	</script>
-	
-	
+
 </head>
 <body>
-    <ul>
-      <li><a class="active" href="#음식종류">Home</a></li>
-      <li><a href="#food">한식</a></li>
-      <li><a href="#food">일식</a></li>
-      <li><a href="#food">중식</a></li>
-	 <li><a href="#food">과일</a></li>
-	<li><a href="#food">기타</a></li>
+	 <ul>
+    <li><a class="active" href="index.html">Home</a></li>
+      <li><a class="active" href="2.html">한식</a></li>
+      <li><a class="active" href="food2.html">중식</a></li>
+      <li><a class="active" href="food3.html">일식</a></li>
+	  <li><a class="active"  href="food4.html">과일</a></li>
+	  <li><a class="active" href="food5.html">기타</a></li>
     </ul>
 	
-	    <div class="main">
-        <h1>섭취 음식 리스트</h1>
-        <form class="" action="index.html" method="post">
-            <input type="text" placeholder="음식" name="todo">
-            <button type="submit"><b>추가</b></button>
-        </form>
-        <div class="todolist">
-            <ul class="d">
-            </ul>
-            <a id="clear">모두 삭제</a>
-		<input type = "button" value="결과보기" onclick="frep()">
-        </div>
-	</div>
-    <script type="text/JavaScript" src="main.js"></script>
+	<!-- <div class="parent" style="width: 300px; height: 100px; background: #585858;">
+    <div class="child" style="background: #2E9AFE;">
+
+    </div>
+    <div class="child" style="background: #FA5858;">
+
+    </div>
+    <div class="child" style="background: #81F781;">
+
+    </div>
+</div> -->
+		
+	<!-- <div class="jb-image"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBMOK-d1tcgdU-kzuzAFkTgQ6u8iW0gvNOtw&usqp=CAU"
+	alt=""></div>
+		<div class="jb-text">
+				<p>김치찌개</p>
+			</div>
+ -->
+	
+	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBMOK-d1tcgdU-kzuzAFkTgQ6u8iW0gvNOtw&usqp=CAU"
+		width: 200px;
+          height: 300px;>
+		<!-- <div class="text"> 김치찌개</div>
+</div> -->
+	<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUVFRgWFRYZGRgaHBgaGBwcGBgZGhoaGhwZGhgZHBkeIS4lHh4rHxgYJzgmLC8xNTU1HCQ7QDs0Py40NTEBDAwMEA8QGhISGjQhJSQ0MTQ0MTQ0NDQ0NDQ0NDQ0NDQ0MTQ0NDQ0NDQ0MTQ0NDQxNDQ0NDQ0MTQ0ND8/MTExMf/AABEIAMQBAgMBIgACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAAABAEDBQIGB//EADoQAAIBAwMCBAQFAwMDBQEAAAECEQADIQQSMUFRBSJhcTKBkaEGE0KxwRTR8FJi4SOCkgcVcqLxVP/EABgBAQEBAQEAAAAAAAAAAAAAAAABAgME/8QAIBEBAQEAAgEFAQEAAAAAAAAAAAERAiExAxITQVFhMv/aAAwDAQACEQMRAD8AxKKKK6oKKKKCKKKKCKKKKAioqaigKKKKAoooqCKDU1zNAUVNRFAUUUUHNFdVBqiKipqKArmpoqCKKKKCKKKKAqKmoqDmiiigeoqaitAooqKAooooIooooCooJjmoUkkBVZieIBM/PioJoppfC9QwkJE/6jHWnLXgDz5nAHSBP3ppjJorfT8OJHmdz7GKbTwGxzsn3J/zrU1ceUqIr21vwmyOEX6Vcvh1rnYk8TtHFB4SKDXvxobf+hf/ABFR/wC32v8AQn/iKK8Cag171vC7J/Qv7VQ/gGnb9H3P801MeHor11z8MWj8JYfP+1I3vwu/6HB9x/YU1MefqK0tR4JfT9G4f7TP2rOdSvxAr7iPvxV1Mc0UUUVFBoooIoooqAqKmooOaKKKB6iiitAooooIoqa1vDPw3fvGXBtID1+N/YfpHqc1KMYtmACT2Ak/8e5rT0fgN58t5F+rf2H3969lofBbVkeRRPc80zcFS0x57Tfh+0mWG892zT21VwABTF2lnQ8wY7wYqargvUA014f4e11uyj4m/gdzTfjWjRNgQRIM5JmIg/c1nVZ9tCxAAknAFNtoLiiShgc8H9jXei0TK6s4IHxD1IIxj5V6IXDzTR5i3bLcAn2FOW/D3PSPcj/9rXKjhcdwKhzEwcjtTRi39K6cr1gRmTRp9K7tEFY5LAiK2Fu4q4LwaapKzprcFCAWU5OQc5H2pfW6HapdDIHIPIHcHrV62B+Y7AnzRgdIAn34pm4rFWAHIIE+vepo80btR+bW2nhiFNhkZBJ6n2npXA8FtAfqPzq6MxXqXsI+HUN8s/Wrdb4cURnRpUdCM/Ws+xqpq6mEdd+Erb5tNsPbp+38V5rxDwq7Z+NZHcD9x/Yn5V9BS5V5cMNrAMOoNXUx8oBmpr2Xi/4TVgXsHa3+mP3HX9/XpXjXRlYo42sOR84kdxg1dRFFFFBFQa6qKDmiiigeooorQK5dwBJrquvDdCdTqEtfpJJc/wCxcN9SdvyPepbiRtfgzwZrzDUvIQEi2oJG88FyR+nkR1z05+g7Ks0ulVFCKAFUAADgAcU9p9MrCSc/tWWmO60q61q3bYDEc579KWZDIEiOnXFS1R4dpEjewknieAB6d60v6gDFZt0bSAJrkOeKzqnLbgcARmAOKV1emUurkkmYAnAwTxUBiTjFQ1tsEmAM+k/4aB123Ko7NIPyih2YiAI9/wCKW0jT5j8qs1Gog4PTNT61EohnNW3USJjPvSy6iurxBXHPSKqq7KgEzPGBTVljmeOlUWEPUZ96tusNpI+ID6x0isi24BBb7/3qm05OcRXH9MSuSQTyI+0VWtp0k8j0/enand84I/z0pe+7KwgeUx2OffpXdhwczB+VDMV+KY6GMH+1aCOs0iO25i2QBE4x1jvVllVUBR5QOwpp3SPMRHf/AJpXxC2NoKHM5E9O9TRRqLiEeePcc/KsexeYtWzpUVeYJ7x07ClddpwrsyxtkYH6Z6fWmoutP2rK/EfgCahCyCLgyCImRxz/AIad09yTWggrc7R8dEglT8Skg+4MGpNbn428LFm8LiCFuAk9t4ifqCPoawpqyomuTUmiqjmioooH6KKKo4uPCk9gT9BXpf8A0103/VvMeVS0g+YZ2+5rzbpuBXuCPqIrf/8ATjVgX3Q4/MtowH+62Sr/ADh0+lTkR9HuvtE1kP4mxJVWIXkx71o68Eo0cxXkrVwq0dTXPlyxqPQLqJ61alzrWRp2YHcfN3pv+pkYx96zOS4fe4CPXp6VQrxmqtM4ZoPzq5woOBH7e9N3sG8iu3ZSc5qucVfbs9zAMf4aYCzBMTFcXrLATINJu2x8GQCY9RTg1IKx17U3RzZQtg/OmnsqEO3ke/8AhNLW7m0RV5uAD3qyhNdUcBRJPFNaFW3EuMj7k/4apdxiIEcelWG9tjODn2qKZ1t+Cue/8Ute1QKkA8gioa8jDIB6CQJqpDaY4In3I+1Lf6kTpUzLH1rTKh1gzHOPSkzsHMfWo0+pAYgHEkik6PJPWh0fbz1U9wf8NFq0T8Rj960dehcBliR91P8AzH1NZN13DbYI6jual6Xyc1FkBZU56zWfqUYKTIIHPMmmLZLHa2MjH35pfXIyMPMGVuABkeh7mrf0L6G5JmtpKw7Ntt87SBzxArbsGRV41K87+PUB06sf0upHzDL/ADXgdkBfYEe3Sva/j7UeRLY5Z9x5+FR1gE8sK8hq0CsFHCqonOcSTnPWuk81iqaig0VRzRRFFA9RRRVBVaXXsalLqSS7m5bzgvn82yfUyY9GFWV2ER1Nq4SEYghh8Vtx8NxfbqOo9YqWakfU7GqXU2FuWmmRIjkHqp7EHBBrzzpueTiPiHrxFeZ/Dni9/R3Tau8nOxQNl5MRdtMTBaBJGJ65r3F25b1CC/aIKnD9DjuOQw4INc+U1uUsb4XBFdIS3FVOU6x9qvtNAAHHNc/tpdYlAe5z7fOpYM+OPWqLt6M5o02qkgRH81dnhO/K2+jrHmxxVr6kBY9IqdTewR8/pWY9wFgOZqXonbUtW1dRzNQ2nYGQQftXDOAP2rizqDugk1bg4e+VPmBHaevsaZs3Q+Onyqy9d8vcdazfzQkxxU/ze6eTl8FDHPtn7V1prrBTKwekwftUWNO7AMYE8TMx06V3/St/qX71c+zTGndIwonr1qvV6RILp5W5I6Hp8qQvMyNHWYma13sNtwQe/SaeerDwX0CI07st0GYj5VTqWC3Cqg9IBnM9vnVlnUbTA+nrXb21dw7TuAjBjHNPM6NMWbbqPMMemR9auujeoCwCDIJ7xVb3Su09CY7weBI7GYqnV6rZGOcQO+f7VdwZdq1ce4wGGGTuwMxH1ovm4AWdCAuDx3ifaYzWzavgAsRkf4KzPEb7NbZQctGO8Gf4qdSKU/qt3lHWtF7q20LMQqqJJPQDvWF4aI3XLvkRMEtAE/zyOOZxXmfxJ+IH1LbLYYICQqx8TqNwZ+wGDt9RujArXG9aldnW/wBRqWvuP+lbyBJWQJ/LUHgtuO8jsAP1AVj3XLMWPJJJ+dODQutkKksg3M3mBbJkkrjHdgM+kABCukYoqKDRVHNFEUUD1FE1E1QVcNO0Kf8AVO31jk1TNb2m06OiSDKqIM9SZOJ9ealuJFOm0iX0Ni+jMgO5HGHtv3RvvHB9aRA1nhjfmITdsZm4oLHbkxeSekxuHEcjivSaLTkAAJtUeq/UbeTPetbTrIlcHqOh9CKz5aZNrWafVgPbdbdxuVLf9Nj/ALX6H0MH0602yOkK4KtAwazPEvwpYdt9otprh5KR+W//AMkPl/b50kD4hpQFdBetzgoC6iOD+Scr/wBhFYvDvYvueh/Ojmq0cLcEdpNZej/EmmuHYSUeSGU5j/sYBx7Q3vWnaG8+SHE5KQfqo8w+YFYvGrrQNsuCSYFK2CFJPOYFOHzJhoxHz61i3rmwmRz/AJNOXXZGqLk1bpnUtkSOvYVm6Qq4iSD75NPWLG2dnHWaS6U3ejO0jj3FY1y23fiM1fcf5VfpLnlOetOWW4To1p75VQCYMcZj5Unc1V4Ofi2SYJXEe4FSJng1paTVoTsPJ5BH+Yq5v3h4Z6qHPmJ960LOoZBtY7l4DcR6MP5rJ1HkcgCBJj26faK4t6qfKTzx/Y1Ny/1Wm8Ez/h7TReuQpJPt6k1jXLm0xMdRV6sWyxNJy3pMOJr2GCcVVrLwLpPr/H/NZ99wrdgDyTA9YJ5rO8Q/FujtyGbe3AAJEHvgFj/4xUm3peo9cNeijJmegBJPoAOted8Z8b09hizPHdJ6/wC987P/AIiW9K8P4l+MdRdlLC/loepwSO0SSR6EkHsKxf6Mk777En16egUYHtXTP1NbXjHjt7WFdpKpLAeUqAIG1kUjJMt5j5scqDFW6HSJbQwMtycQTySY56cYz6VzoG3tG2BA6ySB0Pp6V6JLGQIwOsEj1OP59K1iOfCtSqNFxSUII6+UEQSDyDz715+9bKMykQVJBnmQYr1GguKCA5EbjB6ZHcf5NYfj1rZqHEQJ3ATOGAYZ+dWTEpCoqJqJrSCiiaigY/OFH54pEqajaa5fPPxv46eN8VvaLSbED79pYbjk5JAIHaIivJ7TXt7GjL2k84+FfLwSIAEzzTj6nuS8faY018W1PnG7PlMsTmPl8q0vDNXv80QDj5jmswSsBURVQZl1BiD15Ed6V0/ioY+ViduQRkMf1CTEiOtbZey2g1U1kj4TH7fSjSXgygjrTNaGR4h4dZviNRYR+xK5HseR8jWBc/BlqQ1i/ctEcKWLge24yK9oyVS9gGg8i2m8TsZR01C9mI3n5uD9opbU+N3uNRobw7MisR9QW/avXtp4+EkfOuCzjgz7is3jKbXk7Pj+lWCzPbPZlZfuYg1raf8AFGliBqU+bf2mtI6hxMrM80lqbFh8Pp0bvKIf3FZnCTwu0k/iKP8ADdQiejCPvTGh1agspdOmQ68+uaUu+D6E86ZB7IB+1Kv4HoP/AOdf/t/es/HN3V9z0Ta+2sS6D/vXPpzz6UsvjNhGZnuosAD4unWvPt4JoemnX57j/Ncf+26ReNOnzQH9617P6mtLxT8VaUtI1CEQOJJP2pA/inTD4XZyOioSfkRP7VE2l+Cyg9kUfsKpfUnooFT455X3VL/iZ3krprgjguQoOeclSPvS93x3WsCAUtD0LFh812/uaqvXXPWk7hPc1Zxk8GldVadjN287zJMHYsnnC8/WqbenRfhAHsM/Wr3NUOf2/igtQdYge/8ANdKCxzXCsYp/w7TF2A49e1BreF2lRCzErJ2qRE+pz2/kUyviJfyoT5SI2uU3T6RB9jV95LAVQX6AKMAROSGPMyM+1UhLSMCA5BMZj6+XgVtDtpXDSUCzyCVk/T3rI/Gki6jbQN1tZiYLKTPI5gqK0baKWIDheT1I9zPJ5rM/EaMbFt2AkOyh1JZSrCRJIGfID86587ZNjXHLcrz35jVH5jVXJoE1x+Tl+unsn4s/MNFVwaKfJy/T2cWhioxURUVybTIr0b7QZUSYX4jmYEwScDAxxPrXnCK9Rr/KFVtoJE7ZEAnie5rr6XmufqfTMe+5bYoyZndJkdesAe1M6a+iTAAEdNxB7xI4rnVbWKlnQqR05jsMZHzoRA+0ocLgE5BHbbPNelxbHgnjAD7WY7WI2yIgngT1mvXI9fPmWOYG3Ajb1GMHmvQeB+KzCOSWAwSI3Dv7+lXR6Wa5NVo9dzVHBFcutdmuTUFDpVD26baqXoEntUu9qn3qh6DOe1S1y3WhcpS5QIXLdKXEp+5Sd40CN0Uldpu6aRvNUqlXaqXNWOaqGTWVW6cye8f5mvYeDaaCDtHeCMcYLdhzWT+HvC97Bmwgzx8UdBXrr11QI2woIEAg5UggypiMTBqyJaTdR+ZtgFgPLJGAYwCPXp7Ux+YEeHNqSYgtnjPIrjV3i7bEQkkZJT4eY2g4E95FZ168wChk9lJmT1Ank4rWo0NTaQkEM4IwApER/wA49ar/ABBYjROAVwyMQY3FgY3K0CRBOOlJaW4m4rG2OjCQ3UDIgH5zWzath7TptA3I65YkA7YBAnuf571jl3F49V82oiugtBWvJr0uflRUxRVDtEV1RWRAz1rbfTmFYySx3GT5m6cLJiOsdaxrQEjE5H716A3E3GUBLHaFzCt6QDj3jpXb0vty9T6d6rTIoUsm6BhSYyRmcHseKi4EKqFUBj8IDRxBIBwKR1buCzSTnau6eJg4PXnEU3oLy/qDCciV/brXdyd6fw0ifzJEiQSVEdSCZieaYtoFCqABwZ3gnHcxAPoDQ17ejwkHgSdwbEZ5jpisO2lxHnybm/SQQsAGR6cig9jp/FlVghafUZA7ebg1sW74NeG/qhbhjA+mCcQO33pqz4m6tgeXGMemRmro9nvqC1Y+m8SDenvimxqAarJpmqpzVZu1w1yglzS7mpe5S73KDm4aTutVly5Sd65RpXcakbz1Zeu1n3nqaK770i7VbceetcWtM9wwiz69B86mqVia2PBPBi7BnHl7cFhOQJ6YNaXh/hFlF3XXVjB8uQO0jgyJ+WKfu34IdQC3CrOe/rj0qRLVttdsjZwSFWMhccxxwarOpFpTKQCc7RJOAdxjPJ+1W+Hh2ku0NiMwD1OJzHE+9XvaUA/mFXJ4O3PpgH/9rQUseLI77ADugSCSuIkTJECp1mjQ7S6hoWNu/C85XHfr0rNfVoLm200mOSo24gxJ5z06Und3FzvYhWU/BGYglg3Ee5A/kNG0lkNyZyxDQVYHEkxnEZq9Na67AtpGRmAO0gBUmCYgBh6c9qR0r7AfIXB/Uw3QMckkkiOgq97KOIW4qnoFzIHEjoOM4oPOamzsd142sw7cGq4p3x5GW+4JBkI24CAwZFO75zWdJrx8plr0Tw72GiudzUVlo2amrwoqXI4qaKbQO4Edx+9eia85ZZCKAB5STuUY7CPlWJaYggjBBBB7EcU0192eJQzAIwD3GAIPU/Piu/o+K4+o0NRdBkKpLAiMrnvE89Klb4IIYA7YBnJEeYY+9I2FA3bvKW5YQAfTvNWWlKyu4MSZYLGMdcknpgTXZzdamAnITjaGMCegmcVCi3G1pVgCAoJAackk8n60tqdWo8ikBugbr67T7Go0+rBwyz1kQcnjp6mghxxsHlHxA46+UqZ79z86FK2i0yNwy+9SJP6YOZ+tWlTJCL3wSCyjtzIpVNOxY7wCJxuAwIGAR/NA+mrQsF5ByD+kR/uHl5pu1rIfYXhV+IgM5E/CSO/cfOsW/bQQdmxAYbG6V5wJwSRE5NQ7v5djqEUg4UjAzEA9scUHt20V4AMm11IkFG5HeD/E0nc1TJ8aMvuCP3rJ0Pjd23L2WBQiSjztnqZ/T8vnW/o/xfYeFuo1tiJ43qe8MufqBWpWWe2uBql9YK9ClzSXfge23sVJ+nNUXfCrJ4A+QFB525qR3pS/qR3H1Fb2p8MtjoPoKwtebCclB77RRdJG6SY47ZFVFATk/ST96rfxFJAQTPBwq98scVp6fwtwQ7lSu3cFWfXHEsfoM1DXei8HRhuJ3kfpYkKfTBkmn79kJKjYAfhGMY7AY5JzzSd5gkbXdAJOfITA6Rjk/wAVmf153BV3bzGd0SScztGeuYz3qo0XC7h+ZgQYOAd3QLJNWNpyoLAxnyiMj3Irl7cAKcyV5JbPJj5bqX10gIN7AHuGIB7cHb8yelGnFm9LkTAgxJmMkkHrx1pdluBioIkZ4dxB6yJ+9P2bBiQqsRye/uhAz8/rSd17rXMIymcvkAf7Yjs3NBemgKlXcoVO2dxYd+DHr17VeCFIe2qttkQFAGcTxmPeMVl3Ll0ttLkKxAPmiPnGDE9+elahdTtWf9I8x9c5z2pQwmqtoCx2kt8WIPr5Twf8zVOgFsvvDER1XkgY+ESTHSqNb5goVdxBJKwZ5mPQ9ef3pnw/TlVZQqqxyu6VjrE5n9WKgW/FqLvtuhEMhU4gyjHJ7yGXPWPSsKa9B4tpy1hWQ7wrkM24HzEGRA44A+VYRsv2rz8+N91yO/HlMV7qK6/pn7Gisezl+L7ofmio29q52ma5tGdCsugicjEx9+lP3oDMGhWbE+YCMYHGAIisu18Q5HqAT7YxTx042EvuESxZ2YDHPrPpXo9GZHH1PKdNplLFjLDIBbcATxBBE/MVZb1nACYUmIECYMkbvp86VtWWO0KvlwZcnM5I29BJ+3FdXk2Fm2lSTn9SbQMR25rs5qdXdR2LMoUwRLCYM4xGM9ZqNO1tQcPAgSACCI6KWmMz0+9Na1JTcolh6cz7jFZXiF9CAsywMGOOBjdI7j+1TRoNbdTvUk4iFEY6zJ4/yarvXSqb4CtiQJaRPJBiD98+lK6TWMFKwSfcc8jrVF7VuRtZl9Z5+3rFUM3tWx27YZciSAYJj1FcajUkHaNoxwIKtPAyYFJ29STG8EiehiV7kxz6D711cZM7JmYDE8GJgd6BsakbZIAYHAQQIPmiOCasS6GjbbC+52k/KIjpS+neR5yJGARH3Ec+lWhwREz7CKamHd4KLuW2SB0G6fYE5ilkW0RIJIPYlYPpHT0rPvaja21FOZiAYjtM/eIprw65kyuw9RP0xQxeljcPK2CNqrDO5OJkk/xXC/h3cA7HymcAeaM5I/zFPtrVUE70yAJKyYGDG3j/ADnp22pW5bIgQARu3MvlOC3+0DmJmkQg+rWwRaRT5Y8x8qqIMzHJzHw9BTmt1F1SDvJUAbiFIB9AwiRWdqtMoUlSxaPLIDDtDRBPvNW2dQZVBEAAS3kEHjC9/pWtDyOjgO43TjcGU8jiOfnFJX08wKMB1EhtwGZERB9sc1W6EIWZsMcbGkeucfWrDdKlVVjtPcTj1wSeZ5HFRpOn1DKfPIMiI3BY4MkSflxTaraPLhxGBAEYBACGCRic1COiR/uwsbmPGTGSDHvxXGp2KJYEz6TJ6HHHFBXek5Q44wqgDMdTU6bxDYmW2leQdpEZkkgevfoeZpjTIrqChIgNxtJJIjBx96TfTlUYr8TEFg5BIHUACJPqCRRlLhbsMQpkH9RUkAkgbSJI4xUabTOCQmZyQQwMTOD26VzeTcFYQRHmGAe8FZI7+tOB3gbREmG3HyjEyOuY4H8U1pA1UTFsTAyp3TPUzkirXdyBIKiQMKVBMdun16VKX0YAh1MtAggCT0BnJpm86hGAZi0yB5hBwOQMD7VNFuptn8l8bhCkMNo2sGEhgMzkjt7dcOKetIEUuzkBiEaMyXMSw7SR8p6cKFa1xHNFTmitBv8ALFdbB2oorGRV2itgunuKU8UwXbkyTnIBERAoopyQs95oXJHPHpxVWi1BKlyBMesY4xNTRUFL6pgrweAMdODj2rm8gY5HB9p945ooqQU39QTggcDv/errGkTaRtHTPXp1ooqhJLAD4x7UakwpI5HFTRQJ2r7Hdn+O3ardRdZRgnpRRQcWtQwUkHOKa1F07Nxgn1z1oooGbAD7QwkBjGSP2OfnWk1sWzb2Y3xP0P8AYUUUT6L63F1IwCMgYHvA61zq9YwsCAuWC8ft60UUVRfuG2j7f2A6ekVV4bq2uqN0DpgdO2ZqKKDZ0wxPBluPYVbrNGtvzKW83IJkHBoooyzY/LQumDIHJiDE4p9vMF3Zwc9aKKlWEluHcy9PYdfXmudSAowPXk8/Wiiqp3w+wsFyJYAQTmmHtBgN0mVz96iigZ0WpMRtWFAIEYJJHI4PApB+TRRV4lcUUUVsf//Z" 
+		  width: 200px;
+          height: 300px;>
+
+	
+	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcE2DZ10f4FIFofdbqlhnGM7iKTidYgHHToQ&usqp=CAU"
+		  width: 200px;
+          height: 300px;>
+	
+	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYUrtgpn1uNEsd5AP4E1OjDy2a7_37BQo3bw&usqp=CAU"
+		  width: 200px;
+          height: 300px;>
+
+	
 	<script>
-	init();
-
-function init(){
-        document.querySelector('form').addEventListener('submit', addToDo);
-    
-        document.getElementById('clear').addEventListener('click', clearTodoList);
-    
-    
-        document.querySelector('ul').addEventListener('click', deleteOrCheck);
-    
-    
-}
-
-function deleteOrCheck(e){
-    if(e.target.className == 'delete')  
-    
-        deleteToDo(e); // X 버튼을 누르면 목록에서 항목 삭제
-    
-    
-    else {
-    
-        checkToDo(e); // 체크박스를 클릭한 경우 글씨 색을 연하게 바꿔준다.
-    
-    
+      div.setAttribute("class","image");
+      div.onclick = function(){
+        if (this.getAttribute("class").indexOf("image-selected") 
+        == -1){
+          this.setAttribute("class", "image image-selected")
+        }
+        else{
+          this.setAttribute("class", "image ")
+        }
     }
-    
-}
-
-function deleteToDo(e){ // X 버튼을 누르면 목록에서 항목 삭제
-    let remove = e.target.parentNode;
-    
-    let parentNode = remove.parentNode;
-    
-    parentNode.removeChild(remove);
-    
-}
- 
-function checkToDo(e){  // 체크박스를 클릭한 경우 글씨 색을 연하게 바꿔준다.
-    const todo = e.target.nextSibling;
-    
-    if(e.target.checked){
-    
-        todo.style.color = "#dddddd";
-    
-    
-    }else {
-    
-        todo.style.color = "#000000";
-    
-    
-    }
-    
-}
-
-function clearTodoList(e){ //목록 전체 삭제하는 경우
-    let ul="d" = document.querySelector('ul').innerHTML = '';
-    
-}
-
-function addToDo(e){ //새로운 할 일 추가하는 경우
-    e.preventDefault();
-    let toDoValue = document.querySelector('input');
-    if(toDoValue.value !== '')
-        addTask(toDoValue.value);
-    
-    
-        toDoValue.value = ''; //입력창 비워주기
-    
-    
-}
-
-function addTask(value){
-    let ul="d" = document.querySelector('ul');
-    
-    let li="f" = document.createElement('li');
-    
-    li.innerHTML = `<span class="delete">x</span><input type="checkbox"><label>${value}</label>`;
-    
-    ul.appendChild(li);
-    
-    document.querySelector('.todolist').style.display = 'block';
-    
-}
 </script>
+	<script>
+      div.onclick = function(){
+        this.classList.toggle("image-selected")
+      }
+</script>
+	  <form>
+        <input class="c" type="checkbox" name="foodd" onclick="calc()" value="47.9">김치찌개
+        <input class="c" type="checkbox" name="food" onclick="calc()" value="71">쌀밥
+        <input class="c" type="checkbox" name="food" onclick="calc()" value="91.91">된장찌개
+		   <input class="c" type="checkbox" name="food" onclick="calc()" value="318">김밥<br>
+         합계 : <input id="sum" value="0">
+    </form>
+	
+	<form method="post" action="test.jsp">
+<input type="button" value="추가" onclick="addInput();" />
+<input type="button" value="삭제" onclick="deleteInput();"/>
+<input type="submit" value="전송"/>
+</form>
+	
+	
+	
 </body>
 </html>
