@@ -1,184 +1,329 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-	<div id="parah"></div>
-	<script>
-        var sum = 0;
-        function calc(){ 
-            a = document.getElementsByClassName("c");
-            for(i = 0; i < a.length; i++){
-                if(a[i].checked == true){
-                    sum += parseInt(a[i].value);
-                }
-            }
-				
-            document.getElementById("sum").value = sum;
-            sum = 0;
-        }
-    </script>
-	
-	
-	<script>
-var arrInput = new Array(0);
-  var arrInputValue = new Array(0);
- 
-function addInput() {
-  arrInput.push(arrInput.length);
-  arrInputValue.push("");
-  display();
-}
- 
-function display() {
-  document.getElementById('parah').innerHTML="";
-  for (intI=0;intI<arrInput.length;intI++) {
-    document.getElementById('parah').innerHTML+=createInput(arrInput[intI], arrInputValue[intI]);
-  }
-}
- 
-function saveValue(intId,strValue) {
-  arrInputValue[intId]=strValue;
-}  
- 
-function createInput(id,value) {
-  return "<input type='text' id='test "+ id +"' onChange='javascript:saveValue("+ id +",this.value)' value='"+ 
- 
-value +"'><br>";
-}
- 
-function deleteInput() {
-  if (arrInput.length > 0) { 
-     arrInput.pop(); 
-     arrInputValue.pop();
-  }
-  display(); 
-}
-</script>
-	
-<style type="text/css">
-	ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    background-color: #333;
-}
-ul:after{
-    content:'';
-    display: block;
-    clear:both;
-}
-li {
-    float: left;
-}
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover:not(.active) {
-    background-color: #111;
-}
-	
-active {
-    background-color: #4CAF50;
-}
-		 
-		 
-		 .parent {
-    display: flex;
-}
-child {
-    flex: 1;
-}
-		 
-		 	}
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+      }
+      ul:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      li {
+        float: left;
+      }
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      li a:hover:not(.active) {
+        background-color: #111;
+      }
+      .img-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        width: 100%;
+      }
+      .img-container .img-item {
+        width: 250px;
+        height: 250px;
+        margin-left: 10px;
+        margin-top: 10px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        cursor: pointer;
+      }
 
-jb-text {
-				padding: 5px 10px;
-				background-color: yellow;
-				text-align: center;
-			}	 
+      .img-container .img-item .kcal {
+        width: 100%;
+        height: 30px;
+        margin-top: 200px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+      }
+      .img-container #item1 {
+        background-image: url("./img/pasta.jpg");
+      }
+      .img-container #item2 {
+        background-image: url("./img/chicken.jpg");
+      }
+      .img-container #item3 {
+        background-image: url("./img/hamburger.jpg");
+      }
+      .img-container #item4 {
+        background-image: url("./img/pizza.jpg");
+      }
+      .img-container #item5 {
+        background-image: url("./img/mandoo.jpg");
+      }
+      .img-container #item6 {
+        background-image: url("./img/donut.jpg");
+      }
+      .img-container #item7 {
+        background-image: url("./img/milk.jpg");
+      }
+      .img-container #item8 {
+        background-image: url("./img/coffee.jpg");
+      }
 
-	</style>
+      .selected-container {
+        margin-top: 20px;
+        margin-left: 10px;
+      }
 
-</head>
-<body>
-	 <ul>
-    <li><a class="active" href="index.html">Home</a></li>
+      .selected-container textarea {
+        border: 1px solid gray;
+        border-radius: 10px;
+        resize: none;
+        padding: 10px;
+        outline: none;
+      }
+
+      .calc-btn {
+        margin-top: 10px;
+        width: 200px;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        background-color: #333;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .reset-btn {
+        margin-top: 10px;
+        width: 200px;
+        height: 40px;
+        border: 1px solid #333;
+        border-radius: 20px;
+        background-color: #fff;
+        color: #333;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .result-container {
+        display: none;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a class="active" href="index.html">Home</a></li>
       <li><a class="active" href="2.html">한식</a></li>
       <li><a class="active" href="food2.html">중식</a></li>
       <li><a class="active" href="food3.html">일식</a></li>
-	  <li><a class="active" href="food4.html">과일</a></li>
-	  <li><a class="active" href="food5.html">기타</a></li>
+      <li><a class="active" href="food4.html">과일</a></li>
+      <li><a class="active" href="food5.html">기타</a></li>
     </ul>
-	
-	 <!-- <div class="parent" style="width: 300px; height: 100px; background: #585858;">
-    <div class="child" style="background: #2E9AFE;">
-
+    <div class="img-container">
+      <div
+        class="img-item"
+        id="item1"
+        name="파스타"
+        c="77"
+        p="11"
+        f="1.2"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>363</span>
+          <span>kcal / 100g</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item2"
+        name="치킨"
+        c="4"
+        p="25"
+        f="34"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>435</span>
+          <span>kcal / 150g</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item3"
+        name="햄버거"
+        c="72.9"
+        p="27.9"
+        f="19.35"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>630</span>
+          <span>kcal / 150g</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item4"
+        name="피자"
+        c="3.6"
+        p="17.1"
+        f="19.8"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>402.75</span>
+          <span>kcal / 150g</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item5"
+        name="만두"
+        c="18.7"
+        p="6.8"
+        f="6.1"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>157</span>
+          <span>kcal / 120g</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item6"
+        name="도넛"
+        c="23"
+        p="2"
+        f="6"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>154</span>
+          <span>kcal / 40g</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item7"
+        name="우유"
+        c="5.53"
+        p="3.08"
+        f="3.32"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>65</span>
+          <span>kcal / 100ml</span>
+        </div>
+      </div>
+      <div
+        class="img-item"
+        id="item8"
+        name="아이스아메리카노"
+        c="1.87"
+        p="1"
+        f="1.29"
+        onclick="clickItem(id)"
+      >
+        <div class="kcal">
+          <span>10</span>
+          <span>kcal / 355ml</span>
+        </div>
+      </div>
     </div>
-    <div class="child" style="background: #FA5858;">
-
+    <div class="selected-container">
+      <textarea
+        cols="255"
+        rows="10"
+        placeholder="오늘 먹은 음식들"
+        readonly
+      ></textarea>
     </div>
-    <div class="child" style="background: #81F781;">
-
+    <button type="button" class="calc-btn" onclick="clickCalc()">
+      칼로리 계산하기
+    </button>
+    <button type="button" class="reset-btn" onclick="clickReset()">
+      초기화하기
+    </button>
+    <div class="result-container">
+      <span>총 칼로리 : </span>
+      <span id="totalKcal">0</span>
+      <span>kcal</span>
+      <br />
+      <span>총 탄수화물 : </span>
+      <span id="totalCalbo">0</span>
+      <span>g</span>
+      <br />
+      <span>총 단백질 : </span>
+      <span id="totalProtein">0</span>
+      <span>g</span>
+      <br />
+      <span>총 지방 : </span>
+      <span id="totalFat">0</span>
+      <span>g</span>
     </div>
-</div>  -->
-		
-	<!-- < <div class="jb-image"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBMOK-d1tcgdU-kzuzAFkTgQ6u8iW0gvNOtw&usqp=CAU"
-	alt=""></div>
-		<div class="jb-text">
-				<p>김치찌개</p>
-			</div>
- -->
-	
-	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Py3SmBX0_z_oezG29xSBw7tsmr1KfaXTpg&usqp=CAU"
-		width: 200px;
-          height: 300px;>
 
-	
-	<img src="data:image/jpeg;base64,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j7rX7XKfSMW6V+5/z72JpERfVGKEREAREQBERAEREARF8ucgMkrK+Gt4r7QBERAEREAREQBERAFp5rllHE0zTrMD2n6tPBzT8rhzC3ERq+jPU3Fpp6o4h2v7D4nC6qjf51EX1NF2Aba2cOFxItfkvrKaLKsGZgnoSOG3SF21VbM+yFLX32GilUN3M/w39SB8B6i3SbrIx2AlODdHfuNqj0s5LLW37/2vyvQjqlbSO72I3i4ss06eqQ+4+iiMRja2GxAbXpgBwgg3BEi8jhMXViOGpvb3jRGsQRxABMCeIvZfOV8Hli5J6rg9/wC/fkdqo42T48UeBogXaAOa8slxTqeOY2Q5lUOYSNp0l7fdsepW1TaHSy8AXXnicABoeyxpEOEcC0yPNddGSdN9ZbZ3524+xxWafYfFW/XuXRFgGbjYrK+4ZiBERAEREAREQBERAYcV8hs7r7RAEREAREQBERAEREAREQBERAYcV8hsr7RAa2PwFKs3RVY17eRG3CQdwfJRH/KHUGw0l7BtxcByP2vMfRWBFVxWDp4iNpb963/q5O5LTrShotu4q1LFNdYCBO4uT0W5WaHNgDSLdfOy38TlVNz+8A0v4kfN/mHHz3WhiWuZ8QtzF5WQ6FXDJqpZx4NK3rbb7c772c8Z6x08fmpvZLiNdITu0lh/t2/26St9Q+Ruh9Rv2gHR5WPlu36KYWxg6nWUIt+Hpp77latHLNoIiKyRBERAEREAREQBERAEREARYIQBAZREQBERAEREAREQBERAEREAXy5oIgwQvorDQm4IzAZK2lWfVa951CAwkQ3ba08OKlERR06UKccsFZcjqc5Td5O4REUhyEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREB/9k="
-		width: 200px;
-          height: 300px;>
+    <script>
+      let totalKcal = 0;
+      let totalCalbo = 0;
+      let totalProtein = 0;
+      let totalFat = 0;
 
-	
-	 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_NoYP-2sKsw2IXuF6t-0o8Mgksbgu65O60_LGopddnW1NbGXbKiKkkBzau5ZdUJaLHF4&usqp=CAU"
-		  width: 200px;
-          height: 300px;>
+      function clickItem(id) {
+        let text = $(".selected-container textarea").val();
+        let food = $(`#${id}`).attr("name");
+        let kcal = Number($(`#${id} .kcal span:nth-child(1)`).text());
+        let calbo = Number($(`#${id}`).attr("c"));
+        let protein = Number($(`#${id}`).attr("p"));
+        let fat = Number($(`#${id}`).attr("f"));
 
-
-	
-	<script>
-      div.setAttribute("class","image");
-      div.onclick = function(){
-        if (this.getAttribute("class").indexOf("image-selected") 
-        == -1){
-          this.setAttribute("class", "image image-selected")
-        }
-        else{
-          this.setAttribute("class", "image ")
-        }
-    }
-</script>
-	<script>
-      div.onclick = function(){
-        this.classList.toggle("image-selected")
+        $(".selected-container textarea").val(text + " " + food);
+        totalKcal += kcal;
+        totalCalbo += calbo;
+        totalProtein += protein;
+        totalFat += fat;
       }
-</script>
-	  <form>
-        <input class="c" type="checkbox" name="food" onclick="calc()" value="530.04">치킨
-        <input class="c" type="checkbox" name="food" onclick="calc()" value="402.75">피자
-        <input class="c" type="checkbox" name="food" onclick="calc()" value="211.16">만두
-       <br> 합계 : <input id="sum" value="0">
-    </form>
-	
-	<form method="post" action="test.jsp">
-<input type="button" value="추가" onclick="addInput();" />
-<input type="button" value="삭제" onclick="deleteInput();"/>
-<input type="submit" value="전송"/>
-</form>
-	
-	
-	
-</body>
-</html> 
+
+      function clickCalc() {
+        $("#totalKcal").text(totalKcal.toFixed(2));
+        $("#totalCalbo").text(totalCalbo.toFixed(2));
+        $("#totalProtein").text(totalProtein.toFixed(2));
+        $("#totalFat").text(totalFat.toFixed(2));
+
+        $(".result-container").css("display", "block");
+      }
+
+      function clickReset() {
+        totalKcal = 0;
+        totalCalbo = 0;
+        totalProtein = 0;
+        totalFat = 0;
+        $("#totalKcal").text(totalKcal);
+        $("#totalCalbo").text(totalCalbo);
+        $("#totalProtein").text(totalProtein);
+        $("#totalFat").text(totalFat);
+        $(".selected-container textarea").val("");
+
+        $(".result-container").css("display", "none");
+      }
+    </script>
+  </body>
+</html>

@@ -1,83 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-			<h1>일일 권장 칼로리</h1>
+	<script type="text/javascript">
+		function rep() {
+			var v1 = Number(document.getElementById("v1").value);
+			var op = Number(document.getElementById("op").value);
+			var res;
+			var r1;
+			var r2;
+			var r3;
+			console.log("op: ", op);
+			console.log("Res1: ", res);
 
-	 <script>
-			function rep(){
-				   var v1 = Number(document.getElementById("v1").value);
-				   var op = Number(document.getElementById("op").value);
-				   var res;
-				   var r1;
-				   var r2;
-				   var r3;
-		
-		    if(op= 25){
-				res= (v1-100)*0.9*op;
-				r1= (res*0.6)/4
-				r2= (res*0.2)/4
-				r3= (res*0.2)/9
-			}else if(op=35){
-				res= (v1-100)*0.9*op;
-				r1= (res*0.6)/4
-				r2= (res*0.2)/4
-				r3= (res*0.2)/9
-			}else if(op=40){
-				res= (v1-100)*0.9*op;
-			    r1= (res*0.6)/4
-				r2= (res*0.2)/4
-				r3= (res*0.2)/9
+			if (op == 25) {
+				res = (v1 - 100) * 0.9 * op;
+				r1 = (res * 0.6) / 4
+				r2 = (res * 0.2) / 4
+				r3 = (res * 0.2) / 9
+			} else if (op == 35) {
+				res = (v1 - 100) * 0.9 * op;
+				r1 = (res * 0.6) / 4
+				r2 = (res * 0.2) / 4
+				r3 = (res * 0.2) / 9
+			} else if (op == 40) {
+				res = (v1 - 100) * 0.9 * op;
+				r1 = (res * 0.6) / 4
+				r2 = (res * 0.2) / 4
+				r3 = (res * 0.2) / 9
 			}
-		 document.getElementById("res").value = res;
-		 document.getElementById("r1").value = r1;	
-		document.getElementById("r2").value = r2;
-		document.getElementById("r3").value = r3;
-		 }
-            // 초기화 함수 선언
-            function reset(){
-                
-				document.getElementById("v1").value = "";
-				document.getElementById("op").value = "";
-				document.getElementById("res").value = "";
-				document.getElementById("r1").value = "";
-				document.getElementById("r2").value = "";
-				document.getElementById("r3").value = "";
-            }
+			console.log("Res2: ", res);
+			document.getElementById("res").value = res;
+			document.getElementById("r1").value = r1;
+			document.getElementById("r2").value = r2;
+			document.getElementById("r3").value = r3;
+		}
+		// 초기화 함수 선언
+		function reset() {
 
-			
+			document.getElementById("v1").value = "";
+			document.getElementById("op").value = "";
+			document.getElementById("res").value = "";
+			document.getElementById("r1").value = "";
+			document.getElementById("r2").value = "";
+			document.getElementById("r3").value = "";
+		}
 	</script>
-	 
-	 
-</head>
-	
-<body style= "text-align:center;">
-	</style>
-			
-<div id="kcal">
-	<div>
-		<form>
-		 나이: <input type="text" id="v" name="age"><br>
-		 체중: <input type="text" id="v" name="weight"><br>
-		 신장: <input type="text" id="v1" name="cm"><br>
-		 성별: <input type="checkbox" name="성별" value="1"> 여성
-			  <input type="checkbox" name="성별" value="2"> 남성 <br>
-	     활동(적음:25, 보통:35, 많음:40 숫자로 입력):<br><input type="text" id="op"><br>
-		    
-			<!-- :<input type="text"  id="v2" value="25"/> 적음
-			<input type="text" id="v3" value="35"/> 보통
-			<input type="text" id="v4" value="40"/> 많음 <br> -->
-			1일 권장 칼로리:<input type="text" id="res"><br>
-			
-			<input type="button" value="1일 권장 칼로리" onclick="rep()">		
-			<input type="button" value="초기화" onclick="reset()">
-			
-			 <h4>일일 권장 영양 섭취<br>
-				 (주의 사항: 초기화 후 새로고침 필요)</h4>
-			탄수화물<input type="text" id="r1">g<br>
-			단백질<input type="text" id="r2">g<br>
-			지방<input type="text" id="r3">g
-	</div>
 
-	</body>
-</html>	
-	
+</head>
+
+
+<style>
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		background-color: #333;
+	}
+
+	ul:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	li {
+		float: left;
+	}
+
+	li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+
+	li a:hover:not(.active) {
+		background-color: #111;
+	}
+
+	.form-line {
+		margin-left: 100px;
+		margin-top: 30px;
+		display: flex;
+		width: 40%;
+		justify-content: space-between;
+	}
+
+	.form-line-long {
+		margin-left: 100px;
+		margin-top: 30px;
+		display: flex;
+		width: 50%;
+		justify-content: space-between;
+		margin-bottom: -20px;
+	}
+</style>
+
+<body style="text-align:center;">
+
+	<div id="kcal">
+		<div>
+			<ul>
+				<li><a class="active" href="index.html">일일 권장 칼로리</a></li>
+			</ul>
+			<form>
+				<div class="form-line">
+					<span>나이: </span>
+					<input type="text" id="v" name="age">
+				</div>
+				<div class="form-line">
+					<span>체중: </span>
+					<input type="text" id="v" name="weight">
+				</div>
+				<div class="form-line">
+					<span>신장: </span>
+					<input type="text" id="v1" name="cm">
+				</div>
+				<div class="form-line">
+					<span>성별: </span>
+					<input type="checkbox" name="성별" value="1"> 여성
+					<input type="checkbox" name="성별" value="2"> 남성
+				</div>
+				<div class="form-line-long">
+					<span>활동(적음:25, 보통:35, 많음:40 숫자로 입력): </span>
+				</div>
+				<div class="form-line">
+					<input type="text" id="op">
+				</div>
+				<div class="form-line-long">
+					<span>1일 권장 칼로리</span>
+				</div>
+				<div class="form-line">
+					<input type="text" id="res">
+				</div>
+				<div class="form-line">
+					<input type="button" value="1일 권장 칼로리" onclick="rep()">
+					<input type="button" value="초기화" onclick="reset()">
+				</div>
+				<div class="form-line-long">
+					<h4>일일 권장 영양 섭취<br>
+						(주의 사항: 초기화 후 새로고침 필요)</h4>
+				</div>
+				<div class="form-line">
+					<span style="width: 100px;">탄수화물</span>
+					<input type="text" id="r1">g
+				</div>
+				<div class="form-line">
+					<span style="width: 100px;">단백질</span>
+					<input type="text" id="r2">g
+				</div>
+				<div class="form-line">
+					<span style="width: 100px;">지방</span>
+					<input type="text" id="r3">g
+				</div>
+			</form>
+		</div>
+</body>
+
+</html>
